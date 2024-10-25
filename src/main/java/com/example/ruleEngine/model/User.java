@@ -1,18 +1,11 @@
 package com.example.ruleEngine.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document(collection = "users")
 public class User {
-    @Id
     private String id; // MongoDB ID
     private int age;
     private double salary;
     private String department;
     private int experience;
-
-    // Constructors, getters, and setters remain the same
 
     public User(int age, double salary, String department, int experience) {
         this.age = age;

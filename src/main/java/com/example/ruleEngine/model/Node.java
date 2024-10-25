@@ -3,10 +3,12 @@ package com.example.ruleEngine.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Objects;
+
 @Document(collection = "rules")
 public class Node {
     @Id
-    private String id;  // MongoDB will use this ID
+    private String id;
 
     public enum NodeType {
         OPERATOR,
@@ -19,18 +21,14 @@ public class Node {
     private String operator;
     private String value;
 
-    // Default constructor (no-argument constructor)
     public Node() {
     }
 
-    // Constructors, getters, and setters remain the same
-    // Constructor for Operand Nodes (conditions as String)
     public Node(String value) {
         this.type = NodeType.OPERAND;
         this.value = value;
     }
 
-    // Constructor for Operator Nodes (e.g., AND, OR)
     public Node(String operator, Node left, Node right) {
         this.type = NodeType.OPERATOR;
         this.operator = operator;
@@ -84,5 +82,22 @@ public class Node {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node node = (Node) o;
+        return type == node.type &&
+                Objects.equals(left, node.left) &&
+                Objects.equals(right, node.right) &&
+                Objects.equals(operator, node.operator) &&
+                Objects.equals(value, node.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, left, right, operator, value);
     }
 }
