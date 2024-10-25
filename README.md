@@ -10,6 +10,9 @@ creation,combination, and modification of these rules.<br>
  - right: Reference to another Node (right child for operators)<br>
  - value: Optional value for operand nodes (e.g., number for comparisons)<br>
 
+# Video Demo
+https://youtu.be/Y23-LTRAWsM?si=ABVrp2SRyRXrzZvo
+
 ## Getting Started
 
 ### Prerequisites
